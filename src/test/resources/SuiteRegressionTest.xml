@@ -1,0 +1,24 @@
+<!--Format chuẩn của file xml-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1">
+    <test name="FirstTest">
+        <classes>
+            <class name="com.junvu.Bai1.AddCategory">
+                <methods>
+                    <include name="addCategory1"/>
+                </methods>
+            </class>
+            <class name="com.junvu.Bai1.Demo1">
+                <methods>
+                    <include name="firstTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+
+        <!--       // TestNG bắt buộc phải có khai báo thẻ <suite> và <test>, nếu bạn bỏ 1 trong 2 cái khai báo đó thì TestNG sẽ báo lỗi.  Lưu ý: <test> ở đây không phải là 1 test case, test case là cái khai báo trong class java.-->
+        <!--   // Thẻ <suite> và <test> có attribute name, có thể đặt tên tùy ý, không được đặt trùng tên cho các thẻ.-->
+        <!--       // Một file TestNG chỉ có 1 thẻ <suite> duy nhất và <suite> có thể có nhiều thẻ <test>.-->
+        <!--           // Trong thẻ <test> có thể có 0 hoặc nhiều đối tượng test: <packages>, <classes>, <methods>.-->
