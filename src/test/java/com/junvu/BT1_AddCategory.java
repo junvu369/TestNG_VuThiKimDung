@@ -1,15 +1,14 @@
-package com.junvu.Bai1;
+package com.junvu;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 
-public class AddCategory {
+public class BT1_AddCategory {
 
     public static WebDriver driver;
 
@@ -99,7 +98,11 @@ public class AddCategory {
 
         //Get text kết quả trường Name ở dòng đầu tiên
         Thread.sleep(2000);
-        System.out.println(driver.findElement(By.xpath("(//div[normalize-space()='Categories']/following-sibling::div//td)[2]")).getText());
+        if((driver.findElement(By.xpath("(//div[normalize-space()='Categories']/following-sibling::div//td)[2]")).getText()).equals("Giỏ quà bánh Tết")){
+            System.out.println("Tạo mới category thành công");
+        } else {
+            System.out.println("Category chưa được tạo thành công");
+        }
 
         //Close driver
         closeDriver();

@@ -4,16 +4,7 @@
 <suite name="Suite" verbose="1">
     <test name="FirstTest">
         <classes>
-            <class name="com.junvu.Bai1.AddCategory">
-                <methods>
-                    <include name="addCategory1"/>
-                </methods>
-            </class>
-            <class name="com.junvu.Bai1.Demo1">
-                <methods>
-                    <include name="firstTest"/>
-                </methods>
-            </class>
+            <class name="com.junvu.BT2_AddCategory"></class>
         </classes>
     </test>
 </suite>
