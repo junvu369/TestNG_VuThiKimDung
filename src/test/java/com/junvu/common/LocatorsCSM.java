@@ -1,6 +1,6 @@
 package com.junvu.common;
 
-public class Locators {
+public class LocatorsCSM {
     public static String inputEmail = "//input[@id='email']";
     public static String inputPassword = "//input[@id='password']";
     public static String buttonLogin = "//button[@type='submit']";

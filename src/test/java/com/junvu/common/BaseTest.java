@@ -8,26 +8,26 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    WebDriver driver;
+    public static WebDriver driver;
 
     public void createDriver() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-    }
-
-    public void loginCSM() throws InterruptedException {
-        driver.get("https://cms.anhtester.com/login");
-        driver.findElement(By.xpath(Locators.inputEmail)).clear();
-        driver.findElement(By.xpath(Locators.inputPassword)).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath(Locators.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(Locators.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(Locators.buttonLogin)).click();
+//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
     }
 
     public void closeDriver() {
         driver.quit();
     }
+
+    public void loginCSM() {
+        driver.get("https://cms.anhtester.com/login");
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
+        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
+    }
+
 }

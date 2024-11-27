@@ -5,10 +5,9 @@ import com.junvu.common.LocatorsCSM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
-
 import org.testng.annotations.Test;
 
-public class BT2_AddCategory extends BaseTest {
+public class BT3_AddCategory extends BaseTest {
 
     @Test(priority = 1, description = "Kiểm tra Log in thành công")
     public void testLoginCSM() {
