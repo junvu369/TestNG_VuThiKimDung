@@ -12,26 +12,37 @@ public class BT2_AddCategory extends BaseTest {
 
     @Test(priority = 1, description = "Kiểm tra Log in thành công")
     public void testLoginCSM() {
-        createDriver();
-        loginCSM();
-        closeDriver();
+        driver.get("https://cms.anhtester.com/login");
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
+        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
     }
 
     @Test(priority = 2, description = "Kiểm tra xem user đã vào đến trang Category hay chưa")
     public void testCategoryPage() throws InterruptedException {
-        createDriver();
-        loginCSM();
+        driver.get("https://cms.anhtester.com/login");
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
+        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.menuProduct)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.menuCategory)).click();
-        closeDriver();
     }
 
     @Test(priority = 3, description = "Kiểm tra việc tạo một category mới thành công")
     public void testCreateCategory() throws InterruptedException {
-        createDriver();
-        loginCSM();
+        driver.get("https://cms.anhtester.com/login");
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
+        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
+
         driver.findElement(By.xpath(LocatorsCSM.menuProduct)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.menuCategory)).click();
@@ -43,7 +54,7 @@ public class BT2_AddCategory extends BaseTest {
 
         driver.findElement(By.xpath(LocatorsCSM.dropListParentCategory)).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.parentCategorySearch)).sendKeys("giỏ bánh kẹo");
+        driver.findElement(By.xpath(LocatorsCSM.parentCategorySearch)).sendKeys("aka");
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//select[@name='parent_id']/following-sibling::div//descendant::span)[1]")).click();
         Thread.sleep(1000);
@@ -64,6 +75,7 @@ public class BT2_AddCategory extends BaseTest {
         Thread.sleep(1000);
 
         driver.findElement(By.xpath(LocatorsCSM.iconImage)).click();
+        Thread.sleep(1000);
         driver.findElement(By.xpath("//div[@id='aiz-select-file']/descendant::input[@name='aiz-uploader-search']")).sendKeys("hoa tuyết mai");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//div[(@title='hoa tuyết mai.png') and (@data-value=2618)]")).click();
@@ -83,13 +95,17 @@ public class BT2_AddCategory extends BaseTest {
 
         Thread.sleep(2000);
         driver.findElement(By.xpath(LocatorsCSM.saveButton)).click();
-        closeDriver();
     }
 
     @Test(priority = 4, description = "Kiểm tra lại category vừa add đã chính xác chưa")
     public void testCreatedCategory() throws InterruptedException {
-        createDriver();
-        loginCSM();
+        driver.get("https://cms.anhtester.com/login");
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
+        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
+        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
+
         driver.findElement(By.xpath(LocatorsCSM.menuProduct)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.menuCategory)).click();
@@ -106,7 +122,6 @@ public class BT2_AddCategory extends BaseTest {
             System.out.println("Category chưa được tạo thành công");
 
         }
-        closeDriver();
     }
 }
 
