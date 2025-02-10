@@ -25,5 +25,8 @@ public class LocatorsCSM {
     public static String dropListFilteringAttributes = "//select[@name='filtering_attributes[]']/following-sibling::button";
     public static String saveButton = "//div/button[@type='submit']";
     public static String addSuccessMessage = "//span[normalize-space()='Category has been inserted successfully']";
-
+    public static String buttonEditCategory = "(//a[contains(@href,'https://cms.anhtester.com/admin/categories/edit/')])[1]";
+    public static String editSuccessMessage = "//div/span[normalize-space()='Category has been updated successfully']";
+    public static String buttonDeleteCategory = "(//a[contains(@data-href,'https://cms.anhtester.com/admin/categories/destroy/')])[1]";
+    public static String deleteSuccessMessage = "//div/span[normalize-space()='Category has been deleted successfully']";
 }
