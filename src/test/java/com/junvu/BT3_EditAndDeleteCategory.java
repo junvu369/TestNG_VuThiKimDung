@@ -280,7 +280,7 @@ public class BT3_EditAndDeleteCategory extends BaseTest {
         action.sendKeys(Keys.ENTER).perform();
 
         //Kiểm tra kết quả hiển thị ở màn hình Danh sách (Không có kết quả hiển thị)
-
+        Thread.sleep(2000);
+        Assert.assertTrue(driver.findElement(By.xpath("//td[normalize-space()='Nothing found']")).getText().contains("Nothing found"), "Category chưa được xóa thành công.");
     }
-
 }
