@@ -4,7 +4,7 @@
 <suite name="Suite" verbose="1">
     <test name="First Test">
         <classes>
-            <class name="com.junvu.BT3_EditAndDeleteCategory"></class>
+            <class name="com.junvu.BT1_AddCategory"></class>
         </classes>
     </test>
 </suite>

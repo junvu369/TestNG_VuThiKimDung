@@ -51,7 +51,7 @@ public class BT1_AddCategory {
 
         driver.findElement(By.xpath("//select[@name='parent_id']/following-sibling::button")).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//select[@name='parent_id']/following-sibling::div//input")).sendKeys("giỏ bánh kẹo");
+        driver.findElement(By.xpath("//select[@name='parent_id']/following-sibling::div//input")).sendKeys("Gio qua Tet");
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//select[@name='parent_id']/following-sibling::div//descendant::span)[1]")).click();
         Thread.sleep(1000);

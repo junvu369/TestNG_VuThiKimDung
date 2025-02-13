@@ -54,7 +54,7 @@ public class BT2_AddCategory extends BaseTest {
 
         driver.findElement(By.xpath(LocatorsCSM.dropListParentCategory)).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.parentCategorySearch)).sendKeys("aka");
+        driver.findElement(By.xpath(LocatorsCSM.parentCategorySearch)).sendKeys("Gio qua Tet");
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//select[@name='parent_id']/following-sibling::div//descendant::span)[1]")).click();
         Thread.sleep(1000);
