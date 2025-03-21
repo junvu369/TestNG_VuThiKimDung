@@ -42,8 +42,6 @@ public class LocatorsCSM {
     public static String productBarcode = "//input[@placeholder='Barcode']";
     public static String productGalleryImages = "(//div[@data-type = 'image']/descendant::div//div)[1]";
     public static String productThumnailImage = "(//div[@data-type = 'image']/descendant::div//div)[2]";
-    public static String productImageSearchBox = "//input[@placeholder='Search your files']";
-    public static String productImageSelectButton = "//button[normalize-space()='Add Files']";
     public static String productVariationHeader = "//h5[normalize-space()='Product Variation']";
     public static String productColorsEnableButton = "//input[@name='colors_active']";
     public static String productColors = "//button[@data-id='colors']";
@@ -53,9 +51,12 @@ public class LocatorsCSM {
     public static String productColor_3 = "(//div[@id='bs-select-4']//ul[@role='presentation']/li)[3]";
     public static String productColor_4 = "(//div[@id='bs-select-4']//ul[@role='presentation']/li)[4]";
     public static String productColor_5 = "(//div[@id='bs-select-4']//ul[@role='presentation']/li)[4]";
+    public static String productAttributes = "//button[@data-id='choice_attributes']";
+    public static String productAtributes_Size = "//div[@id='customer_choice_options']//div[@class='col-md-8']//button";
     public static String productPriceandStockheader = "//h5[normalize-space()='Product price + stock']";
     public static String productPriceField = "//input[@placeholder='Unit price']";
     public static String productDiscountDateRange = "//input[@placeholder='Select Date']";
+    public static String productDiscountDateSelectButton = "//div[@class='drp-buttons']/button[@type='button'][normalize-space()='Select']";
     public static String productDiscountField = "//input[@placeholder='Discount']";
     public static String productDiscountDropList = "//select[@name='discount_type']/following-sibling::button";
     public static String productQuantityField = "//input[@placeholder='Quantity']";
@@ -64,5 +65,5 @@ public class LocatorsCSM {
     public static String productDescription = "//div[@role='textbox']/p";
     public static String productSEOMetaTagsheader = "//h5[normalize-space()='SEO Meta Tags']";
     public static String productSaveAndPublishButton = "//button[normalize-space()='Save & Publish']";
-    public static String addProductSuccessMessage = "";
+    public static String addProductSuccessMessage = "//button/span[normalize-space(),'Product has been inserted successfully']";
 }
