@@ -11,8 +11,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-
 public class BT3_EditAndDeleteCategory extends BaseTest {
 
     @Test(priority = 1, description = "Kiểm tra việc tạo một category mới thành công")
@@ -30,17 +28,11 @@ public class BT3_EditAndDeleteCategory extends BaseTest {
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.menuProduct)).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.menuCategory)).click();
-        Thread.sleep(1000);
-
-        //Click vào button Add New Category
-        driver.findElement(By.xpath(LocatorsCSM.buttonCreateCategory)).click();
-        Thread.sleep(1000);
         Assert.assertTrue(driver.findElement(By.xpath(LocatorsCSM.headerAddNewCategory)).isDisplayed(), "Không hiển thị đúng trang Thêm mới Category");
         softAssert.assertEquals(driver.findElement(By.xpath(LocatorsCSM.headerAddNewCategory)).getText(), "Category Information", "Giá trị header trang Add New Category không đúng.");
 
         //Thêm mới Category
-        driver.findElement(By.xpath(LocatorsCSM.textBoxName)).sendKeys("Giỏ quà bánh Tết");
+        driver.findElement(By.xpath(LocatorsCSM.textBoxCategoryName)).sendKeys("Giỏ quà bánh Tết");
         driver.findElement(By.xpath(LocatorsCSM.dropListParentCategory)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.parentCategorySearch)).sendKeys("Gio qua Tet");
@@ -49,7 +41,7 @@ public class BT3_EditAndDeleteCategory extends BaseTest {
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.textBoxOrderNumber)).sendKeys("123456");
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.dropListType)).click();
+        driver.findElement(By.xpath(LocatorsCSM.dropListCategoryType)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//select[@name='digital']/following-sibling::div//a)[1]")).click();
         driver.findElement(By.xpath(LocatorsCSM.bannerImage)).click();
@@ -75,7 +67,7 @@ public class BT3_EditAndDeleteCategory extends BaseTest {
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.dropListFilteringAttributes)).click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath(LocatorsCSM.saveButton)).click();
+        driver.findElement(By.xpath(LocatorsCSM.CategorysaveButton)).click();
         Thread.sleep(3000);
 
         //Kiểm tra xem đã add Category thành công hay chưa
@@ -173,16 +165,16 @@ public class BT3_EditAndDeleteCategory extends BaseTest {
         driver.findElement(By.xpath(LocatorsCSM.buttonEditCategory)).click();
 
         //Thay đổi thông tin bên trong Category
-        driver.findElement(By.xpath(LocatorsCSM.textBoxName)).clear();
-        driver.findElement(By.xpath(LocatorsCSM.textBoxName)).sendKeys("Giỏ quà bánh Tết 12345");
+        driver.findElement(By.xpath(LocatorsCSM.textBoxCategoryName)).clear();
+        driver.findElement(By.xpath(LocatorsCSM.textBoxCategoryName)).sendKeys("Giỏ quà bánh Tết 12345");
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.textBoxOrderNumber)).clear();
         driver.findElement(By.xpath(LocatorsCSM.textBoxOrderNumber)).sendKeys("78910");
         Thread.sleep(1000);
-        WebElement element = driver.findElement(By.xpath(LocatorsCSM.saveButton));
+        WebElement element = driver.findElement(By.xpath(LocatorsCSM.CategorysaveButton));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", element);
-        driver.findElement(By.xpath(LocatorsCSM.saveButton)).click();
+        driver.findElement(By.xpath(LocatorsCSM.CategorysaveButton)).click();
 
         //Kiểm tra xem đã Edit Category thành công hay chưa
         Thread.sleep(2000);
@@ -219,7 +211,7 @@ public class BT3_EditAndDeleteCategory extends BaseTest {
 
         //Kiểm tra lại các field đã edit phía trên và so sánh
         Thread.sleep(1000);
-        softAssert.assertEquals(driver.findElement(By.xpath(LocatorsCSM.textBoxName)).getAttribute("value"), "Giỏ quà bánh Tết 12345", "Trường Name sau khi edit chưa hiển thị đúng.");
+        softAssert.assertEquals(driver.findElement(By.xpath(LocatorsCSM.textBoxCategoryName)).getAttribute("value"), "Giỏ quà bánh Tết 12345", "Trường Name sau khi edit chưa hiển thị đúng.");
         Thread.sleep(1000);
         softAssert.assertEquals(driver.findElement(By.xpath(LocatorsCSM.textBoxOrderNumber)).getAttribute("value"), "78910", "Trường Ordering Number sau khi edit chưa hiển thị đúng.");
         softAssert.assertAll();

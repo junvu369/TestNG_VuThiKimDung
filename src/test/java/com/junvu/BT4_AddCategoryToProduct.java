@@ -13,70 +13,140 @@ import org.testng.asserts.SoftAssert;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
-public class BT4_AddProduct extends BaseTest {
-
+public class BT4_AddCategoryToProduct extends BaseTest {
     //0. Khai báo softAssert
     SoftAssert softAssert = new SoftAssert();
 
-    //Log in thành công
-    @Test(priority = 1, description = "Kiểm tra Log in thành công")
-    public void testLoginSuccess() throws InterruptedException {
+    @Test()
+    public void testCreateCategorytoProduct() throws InterruptedException, AWTException {
         driver.get("https://cms.anhtester.com/login");
 
-        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
-        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
-        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
-        Thread.sleep(2000);
-    }
+        //Khai báo elements Log in
+        WebElement ele_inputEmail = driver.findElement(By.xpath(LocatorsCSM.inputEmail));
+        WebElement ele_inputPassWord = driver.findElement(By.xpath(LocatorsCSM.inputPassword));
+        WebElement ele_buttonLogin = driver.findElement(By.xpath(LocatorsCSM.buttonLogin));
 
-    //Click vào Product và chọn Add New Product
-    @Test(priority = 2, description = "Kiểm tra User đã vào được màn Add New Product hay chưa")
-    public void testAddNewProduct() throws InterruptedException {
-        //Log in
-        driver.get("https://cms.anhtester.com/login");
+        //Tạo đối tượng của Actions class và để driver vào
+        Actions action = new Actions(driver);
+        //Tạo đối tượng của Robot class
+        Robot robot = new Robot();
 
-        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
-        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
-        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
-        Thread.sleep(2000);
-        //Click vào Product và chọn Add New Product
-        driver.findElement(By.xpath(LocatorsCSM.menuProduct)).click();
+        //1 Log in
+        ele_inputEmail.clear();
+        action.sendKeys(ele_inputEmail, "admin@example.com").perform();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.addNewProduct)).click();
-        Thread.sleep(2000);
-        //Kiểm tra xem đã vào đúng trang Add New Product chưa
-        softAssert.assertEquals(driver.findElement(By.xpath("//span[normalize-space()='Add New Product']")).getText(), "Add New Product", "The header is not matched.");
-    }
+        ele_inputPassWord.clear();
+        action.sendKeys(ele_inputPassWord, "123456").perform();
+        action.click(ele_buttonLogin).perform();
 
-    //Tiến hành Add New Product và chọn đúng Category đã add ở BT3
-    @Test
-    public void TestAddNewProduct() throws InterruptedException, AWTException {
+        //2 Tạo Category mới
+        //Khai báo elements Category_1
+        WebElement ele_menuProduct = driver.findElement(By.xpath(LocatorsCSM.menuProduct));
+        WebElement ele_menuCategory = driver.findElement(By.xpath(LocatorsCSM.menuCategory));
 
-        //1. Log in
-        driver.get("https://cms.anhtester.com/login");
-
-        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).clear();
-        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).clear();
-        driver.findElement(By.xpath(LocatorsCSM.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(LocatorsCSM.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(LocatorsCSM.buttonLogin)).click();
-        Thread.sleep(2000);
-
-        //2. Click vào Product và chọn Add New Product
-        driver.findElement(By.xpath(LocatorsCSM.menuProduct)).click();
+        //2.1 Click vào Menu Product và chọn Menu Category
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.addNewProduct)).click();
+        action.click(ele_menuProduct).perform();
+        Thread.sleep(1000);
+        action.click(ele_menuCategory).perform();
+        Thread.sleep(1000);
+
+        //Khai báo elements Category_2
+        WebElement ele_buttonCreateCategory = driver.findElement(By.xpath(LocatorsCSM.buttonCreateCategory));
+
+        //2.2 Click vào button Add New Category
+        action.click(ele_buttonCreateCategory).perform();
+        Thread.sleep(1000);
+
+        //Khai báo elements Category_3
+        WebElement ele_headerAddNewCategory = driver.findElement(By.xpath(LocatorsCSM.headerAddNewCategory));
+
+        //2.2.1 Kiểm tra header trang Add New Category
+        Assert.assertTrue(ele_headerAddNewCategory.isDisplayed(), "Không hiển thị đúng trang Thêm mới Category");
+        softAssert.assertEquals(ele_headerAddNewCategory.getText(), "Category Information", "Giá trị header trang Add New Category không đúng.");
+
+        //Khai báo elements Category_3
+        WebElement ele_CategoryNameTextbox = driver.findElement(By.xpath(LocatorsCSM.textBoxCategoryName));
+        WebElement ele_ParentCategoryDropList = driver.findElement(By.xpath(LocatorsCSM.dropListParentCategory));
+        WebElement ele_OrderingNumberfield = driver.findElement(By.xpath(LocatorsCSM.textBoxOrderNumber));
+        WebElement ele_CategoryTypeDroplist = driver.findElement(By.xpath(LocatorsCSM.dropListCategoryType));
+        WebElement ele_BannerImage = driver.findElement(By.xpath(LocatorsCSM.bannerImage));
+        WebElement ele_IconImage = driver.findElement(By.xpath(LocatorsCSM.iconImage));
+        WebElement ele_MetaTitle = driver.findElement(By.xpath(LocatorsCSM.metaTitleTextbox));
+        WebElement ele_MetaDescription = driver.findElement(By.xpath(LocatorsCSM.metaDescription));
+        WebElement ele_FilteringAttributes = driver.findElement(By.xpath(LocatorsCSM.dropListFilteringAttributes));
+        WebElement ele_CategorySaveButton = driver.findElement(By.xpath(LocatorsCSM.CategorysaveButton));
+
+        //2.3. Thêm mới Category
+        //Điền vào Category Name
+        action.sendKeys(ele_CategoryNameTextbox, "Giỏ quà bánh Tết").perform();
+        //Chọn Parent Category
+        action.click(ele_ParentCategoryDropList).perform();
+        Thread.sleep(1000);
+        action.sendKeys(driver.findElement(By.xpath("//select[@name='parent_id']/following-sibling::div//input")), "Gio qua Tet").perform();
+        Thread.sleep(1000);
+        action.click(driver.findElement(By.xpath("//span[normalize-space()='Gio qua Tet 1']"))).perform();
+        //Điền vào trường Ordering Number
+        Thread.sleep(1000);
+        action.sendKeys(ele_OrderingNumberfield, "123456").perform();
+        //Chọn Type
+        Thread.sleep(1000);
+        action.click(ele_CategoryTypeDroplist).perform();
+        action.click(driver.findElement(By.xpath("(//select[@name='digital']/following-sibling::div//a)[1]"))).perform();
+        Thread.sleep(1000);
+        //Thêm ảnh Banner Image
+        action.click(ele_BannerImage).perform();
+        Thread.sleep(2000);
+        action.sendKeys(driver.findElement(By.xpath("//div[@id='aiz-select-file']/descendant::input[@name='aiz-uploader-search']")), "Cosy").perform();
+        Thread.sleep(1000);
+        action.click(driver.findElement(By.xpath("//div[(@title='Cosy.png') and (@data-value=2601)]"))).perform();
+        action.click(driver.findElement(By.xpath(LocatorsCSM.bannerImageAddFile))).perform();
+        Thread.sleep(1000);
+        //Thêm ảnh Icon Image
+        action.click(ele_IconImage).perform();
+        Thread.sleep(1000);
+        action.sendKeys(driver.findElement(By.xpath("//div[@id='aiz-select-file']/descendant::input[@name='aiz-uploader-search']")), "hoa tuyết mai").perform();
+        Thread.sleep(1000);
+        action.click(driver.findElement(By.xpath("//div[(@title='hoa tuyết mai.png') and (@data-value=2618)]"))).perform();
+        Thread.sleep(1000);
+        action.click(driver.findElement(By.xpath(LocatorsCSM.iconImageAddFile))).perform();
+        Thread.sleep(1000);
+        //Điền vào trường Meta Title
+        action.sendKeys(ele_MetaTitle, "ABC").perform();
+        //Điền vào trường Meta Description
+        action.sendKeys(ele_MetaDescription, "This is test").perform();
+        Thread.sleep(1000);
+        //Chọn Attributes
+        action.click(ele_FilteringAttributes).perform();
+        action.click(driver.findElement(By.xpath("//ul[@role='presentation']/descendant::a[@id='bs-select-3-0']"))).perform();
+        Thread.sleep(1000);
+        action.click(ele_FilteringAttributes).perform();
+        Thread.sleep(2000);
+        //Click vào Save Button
+        action.click(ele_CategorySaveButton).perform();
+        Thread.sleep(3000);
+
+        //Kiểm tra xem đã add Category thành công hay chưa
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorsCSM.addSuccessMessage)).getText().contains("inserted successfully"), "Category chưa được add mới thành công");
+
+        //Kiểm tra lại category vừa add đã chính xác chưa
+        driver.findElement(By.xpath("//div/input[@id='search']")).sendKeys("Giỏ quà bánh Tết");
+        action.sendKeys(Keys.ENTER).perform();
+
+        //Get text kết quả trường Name ở dòng đầu tiên
+        Thread.sleep(2000);
+        Assert.assertTrue(driver.findElement(By.xpath("(//div[normalize-space()='Categories']/following-sibling::div//td)[2]")).getText().equals("Giỏ quà bánh Tết"), "Tên Category vừa được tạo chưa hiển thị đúng");
+
+        //3. Tạo mới Product và chọn Category mới tạo phía trên
+        //Khai báo elements Product_1
+        WebElement ele_addNewProduct = driver.findElement(By.xpath(LocatorsCSM.addNewProduct));
+
+        //Click vào button Add New Product
+        action.click(driver.findElement(By.xpath(LocatorsCSM.addNewProduct))).perform();
         Thread.sleep(2000);
 
-        //3. Add New Product
-
-        //3.1. Khởi tạo các elements
+        //Khai báo elements Product_2
         WebElement ele_ProductName = driver.findElement(By.xpath(LocatorsCSM.productNamefield));
         WebElement ele_Category = driver.findElement(By.xpath(LocatorsCSM.productCategory));
         WebElement ele_CategorySearchBox = driver.findElement(By.xpath(LocatorsCSM.productCategoryTextBox));
@@ -107,23 +177,14 @@ public class BT4_AddProduct extends BaseTest {
         WebElement ele_SEOMetaTagsheader = driver.findElement(By.xpath(LocatorsCSM.productSEOMetaTagsheader));
         WebElement ele_SaveAndPublishButton = driver.findElement(By.xpath(LocatorsCSM.productSaveAndPublishButton));
 
-        //3.2.1. Tạo đối tượng của Actions class và để driver vào
-        Actions action = new Actions(driver);
-        //3.2.2. Tạo đối tượng của Robot class
-        Robot robot = new Robot();
-
-        //3.3. Dùng Action và Robot Class để thao tác tạo mới product
-
         //Điền vào trường Product name
         action.sendKeys(ele_ProductName, "Giỏ quà Tết Cosy Kinh Đô").perform();
         Thread.sleep(1000);
 
-        //Chọn Category là Category đã tạo ở BT3
+        //Chọn Category là Category đã tạo ở trên
         action.click(ele_Category).perform();
         Thread.sleep(1000);
-        action.sendKeys(ele_CategorySearchBox, "Gio qua Tet 1").perform();
-        Thread.sleep(1000);
-        action.click(driver.findElement(By.xpath("//span[@class='text']"))).perform();
+        action.click(driver.findElement(By.xpath("//div[@id='bs-select-1']//li/a[@id='bs-select-1-162']"))).perform();
         Thread.sleep(1000);
 
         //Chọn Brand
@@ -253,3 +314,4 @@ public class BT4_AddProduct extends BaseTest {
         softAssert.assertAll();
     }
 }
+

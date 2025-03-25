@@ -50,7 +50,7 @@ public class BT2_AddCategory extends BaseTest {
 
         driver.findElement(By.xpath(LocatorsCSM.buttonCreateCategory)).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.textBoxName)).sendKeys("Giỏ quà bánh Tết");
+        driver.findElement(By.xpath(LocatorsCSM.textBoxCategoryName)).sendKeys("Giỏ quà bánh Tết");
 
         driver.findElement(By.xpath(LocatorsCSM.dropListParentCategory)).click();
         Thread.sleep(1000);
@@ -62,7 +62,7 @@ public class BT2_AddCategory extends BaseTest {
         driver.findElement(By.xpath(LocatorsCSM.textBoxOrderNumber)).sendKeys("123456");
         Thread.sleep(1000);
 
-        driver.findElement(By.xpath(LocatorsCSM.dropListType)).click();
+        driver.findElement(By.xpath(LocatorsCSM.dropListCategoryType)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//select[@name='digital']/following-sibling::div//a)[1]")).click();
 
@@ -94,7 +94,7 @@ public class BT2_AddCategory extends BaseTest {
         driver.findElement(By.xpath(LocatorsCSM.dropListFilteringAttributes)).click();
 
         Thread.sleep(2000);
-        driver.findElement(By.xpath(LocatorsCSM.saveButton)).click();
+        driver.findElement(By.xpath(LocatorsCSM.CategorysaveButton)).click();
     }
 
     @Test(priority = 4, description = "Kiểm tra lại category vừa add đã chính xác chưa")

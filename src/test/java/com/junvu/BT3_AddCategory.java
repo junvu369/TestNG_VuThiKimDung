@@ -2,7 +2,6 @@ package com.junvu;
 
 import com.junvu.common.BaseTest;
 import com.junvu.common.LocatorsCSM;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
@@ -83,7 +82,7 @@ public class BT3_AddCategory extends BaseTest {
         softAssert.assertEquals(driver.findElement(By.xpath(LocatorsCSM.headerAddNewCategory)).getText(), "Category Information", "Giá trị header trang Add New Category không đúng.");
 
         //Thêm mới Category
-        driver.findElement(By.xpath(LocatorsCSM.textBoxName)).sendKeys("Giỏ quà bánh Tết");
+        driver.findElement(By.xpath(LocatorsCSM.textBoxCategoryName)).sendKeys("Giỏ quà bánh Tết");
         driver.findElement(By.xpath(LocatorsCSM.dropListParentCategory)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.parentCategorySearch)).sendKeys("Gio qua Tet");
@@ -92,7 +91,7 @@ public class BT3_AddCategory extends BaseTest {
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.textBoxOrderNumber)).sendKeys("123456");
         Thread.sleep(1000);
-        driver.findElement(By.xpath(LocatorsCSM.dropListType)).click();
+        driver.findElement(By.xpath(LocatorsCSM.dropListCategoryType)).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath("(//select[@name='digital']/following-sibling::div//a)[1]")).click();
         driver.findElement(By.xpath(LocatorsCSM.bannerImage)).click();
@@ -118,7 +117,7 @@ public class BT3_AddCategory extends BaseTest {
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCSM.dropListFilteringAttributes)).click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath(LocatorsCSM.saveButton)).click();
+        driver.findElement(By.xpath(LocatorsCSM.CategorysaveButton)).click();
         Thread.sleep(3000);
         //Kiểm tra xem đã add Category thành công hay chưa
         Assert.assertTrue(driver.findElement(By.xpath(LocatorsCSM.addSuccessMessage)).getText().contains("inserted successfully"), "Category chưa được add mới thành công");
